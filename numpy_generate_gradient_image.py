@@ -27,16 +27,16 @@ from PIL import Image
 
 
 array = get_gradient_3d(screen.width_in_pixels, screen.height_in_pixels, (random_color()), (random_color()), (True, True, True))
-Image.fromarray(np.uint8(array)).save('$HOME/gradientwall/data/gray_gradient_h.jpg', quality=5000)
+Image.fromarray(np.uint8(array)).save('$HOME/gradientwall/data/gray_gradient_h.png', quality=95)
 
 # ![](data/dst/gray_gradient_h.jpg)
 
 array = get_gradient_3d(screen.width_in_pixels, screen.height_in_pixels, (random_color()), (random_color()), (False, False, False))
-Image.fromarray(np.uint8(array)).save('$HOME/gradientwall/data/gray_gradient_v.jpg', quality=5000)
+Image.fromarray(np.uint8(array)).save('$HOME/gradientwall/data/gray_gradient_v.png', quality=95)
 
 # ![](data/dst/gray_gradient_v.jpg)
 
 array = get_gradient_3d(screen.width_in_pixels, screen.height_in_pixels, (random_color()), (random_color()), (True, False, False))
-Image.fromarray(np.uint8(array)).save('$HOME/gradientwall/data/color_gradient.jpg', quality=5000)
+Image.fromarray(np.uint8(array)).save('$HOME/gradientwall/data/color_gradient.png', quality=95)
 
 # ![](data/dst/color_gradient.jpg)

@@ -1,9 +1,6 @@
+from datetime import datetime
 import numpy as np
 import random
-import Xlib.display
-
-display = Xlib.display.Display()
-screen = display.screen()
 
 def random_color():
     levels = range(0,150,32)
@@ -25,18 +22,26 @@ def get_gradient_3d(width, height, start_list, stop_list, is_horizontal_list):
 
 from PIL import Image
 
+def add_random_white_pixels(array, num_pixels):
+    height, width, _ = array.shape
+    for _ in range(num_pixels):
+        x, y = random.randint(0, width-1), random.randint(0, height-1)
+        array[y, x] = [255, 255, 255]
+    return array
 
-array = get_gradient_3d(screen.width_in_pixels, screen.height_in_pixels, (random_color()), (random_color()), (True, True, True))
-Image.fromarray(np.uint8(array)).save('$HOME/gradientwall/data/gray_gradient_h.png', quality=95)
+array = get_gradient_3d(1710, 1112, (random_color()), (random_color()), (True, True, True))
+
+Image.fromarray(np.uint8(array)).save("data/gray_gradient_h.png", quality=95)
 
 # ![](data/dst/gray_gradient_h.jpg)
 
-array = get_gradient_3d(screen.width_in_pixels, screen.height_in_pixels, (random_color()), (random_color()), (False, False, False))
-Image.fromarray(np.uint8(array)).save('$HOME/gradientwall/data/gray_gradient_v.png', quality=95)
+array = get_gradient_3d(1710, 1112, (random_color()), (random_color()), (False, False, False))
+Image.fromarray(np.uint8(array)).save("data/gray_gradient_v.png", quality=95)
 
 # ![](data/dst/gray_gradient_v.jpg)
 
-array = get_gradient_3d(screen.width_in_pixels, screen.height_in_pixels, (random_color()), (random_color()), (True, False, False))
-Image.fromarray(np.uint8(array)).save('$HOME/gradientwall/data/color_gradient.png', quality=95)
+array = get_gradient_3d(1710, 1112, (random_color()), (random_color()), (True, False, False))
+array = add_random_white_pixels(array, 1000)  # Add 1000 random white pixels
+Image.fromarray(np.uint8(array)).save("data/color_gradient.png", quality=95)
 
 # ![](data/dst/color_gradient.jpg)
